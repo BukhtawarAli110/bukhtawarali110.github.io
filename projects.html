@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Power BI projects by Bukhtawar Ali: sales, HR, content, profitability and row-level security dashboards, with source code on GitHub.">
+    <title>Projects - Bukhtawar Ali - Data Analyst/Engineer</title>
+    <style>
+        @font-face {
+            font-family: 'FontAwesomeRegular';
+            /* Adding ?raw=true to ensure the browser can download the raw file from GitHub */
+            src: url('https://github.com/FortAwesome/font-awesome-sass/blob/main/assets/fonts/font-awesome/fa-regular-400.ttf?raw=true') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        :root {
+            --text: #666666;
+            --heading: #444444;
+            --line: #eeeeee;
+            --accent: #2b6cb0;
+            --accent-soft: #eef4fb;
+            --card: #ffffff;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: 'FontAwesomeRegular', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text);
+            line-height: 1.6;
+            max-width: 1040px;
+            margin: 40px auto;
+            padding: 0 20px;
+            background-color: #ffffff;
+        }
+
+        a { color: var(--accent); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+
+        .topbar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px 24px;
+            align-items: center;
+            justify-content: space-between;
+            padding-bottom: 14px;
+            border-bottom: 1px solid var(--line);
+            font-size: 0.95em;
+        }
+        .topbar nav { display: flex; gap: 22px; }
+        .topbar nav a { color: var(--text); text-transform: uppercase; letter-spacing: 1px; font-size: 0.85em; }
+        .topbar nav a[aria-current="page"] { color: var(--heading); font-weight: 600; border-bottom: 2px solid var(--accent); }
+        .back-link { font-weight: 600; }
+
+        header.hero { margin: 36px 0 30px; }
+        h1 { color: var(--heading); font-weight: 600; margin: 0 0 8px; font-size: 2em; }
+        .lead { max-width: 720px; margin: 0 0 18px; }
+        .stats { display: flex; flex-wrap: wrap; gap: 10px; padding: 0; margin: 0; list-style: none; }
+        .stats li {
+            margin: 0;
+            padding: 6px 14px;
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            background: #fafafa;
+            font-size: 0.9em;
+        }
+        .stats strong { color: var(--heading); }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 460px), 1fr));
+            gap: 28px;
+            margin-top: 10px;
+        }
+
+        .card {
+            display: flex;
+            flex-direction: column;
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            transition: box-shadow 0.2s ease, transform 0.2s ease;
+        }
+        .card:hover { box-shadow: 0 8px 22px rgba(0, 0, 0, 0.10); transform: translateY(-3px); }
+
+        .shot { display: block; background: #f4f4f4; border-bottom: 1px solid var(--line); }
+        .shot img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; object-position: top left; }
+
+        .card-body { display: flex; flex-direction: column; flex: 1; padding: 20px 22px 22px; }
+        .card h2 { margin: 0 0 4px; font-size: 1.2em; line-height: 1.3; color: var(--heading); font-weight: 600; }
+        .card h2 a { color: inherit; }
+        .meta { margin: 0 0 12px; font-size: 0.85em; color: #999999; }
+
+        .tags { display: flex; flex-wrap: wrap; gap: 6px; padding: 0; margin: 0 0 14px; list-style: none; }
+        .tags li {
+            margin: 0;
+            padding: 2px 10px;
+            border-radius: 999px;
+            background: var(--accent-soft);
+            color: var(--accent);
+            font-size: 0.78em;
+            font-weight: 600;
+        }
+
+        .card ul.points { margin: 0 0 18px; padding-left: 18px; font-size: 0.93em; }
+        .card ul.points li { margin-bottom: 7px; }
+
+        .cta {
+            margin-top: auto;
+            align-self: flex-start;
+            display: inline-block;
+            padding: 8px 16px;
+            border: 1px solid var(--accent);
+            border-radius: 6px;
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 0.92em;
+            transition: background 0.15s ease, color 0.15s ease;
+        }
+        .cta:hover { background: var(--accent); color: #ffffff; text-decoration: none; }
+
+        .bottom-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px 24px;
+            justify-content: space-between;
+            margin-top: 44px;
+            padding-top: 18px;
+            border-top: 1px solid var(--line);
+        }
+
+        footer { margin-top: 30px; font-size: 0.9em; }
+        footer ul { list-style: none; padding: 0; margin: 0; }
+        footer li { margin-bottom: 6px; }
+
+        @media (max-width: 520px) {
+            body { margin: 24px auto; }
+            .card-body { padding: 16px; }
+            .topbar nav { gap: 16px; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .card, .cta { transition: none; }
+            .card:hover { transform: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="topbar">
+        <a class="back-link" href="index.html">&larr; Back to main page</a>
+        <nav aria-label="Site">
+            <a href="index.html">Home</a>
+            <a href="projects.html" aria-current="page">Projects</a>
+            <a href="aboutme.html">About Me</a>
+        </nav>
+    </div>
+
+    <header class="hero">
+        <h1>Projects</h1>
+        <p class="lead">Six Power BI projects built while retraining in data analytics. Each one has a README, the report file, the data and screenshots on GitHub, and each answers a business question with DAX, data modelling and clear dashboard design.</p>
+        <ul class="stats" aria-label="Summary">
+            <li><strong>6</strong> dashboards</li>
+            <li><strong>Power BI</strong> and <strong>DAX</strong></li>
+            <li><strong>Open source</strong> on GitHub</li>
+        </ul>
+    </header>
+
+    <main>
+        <div class="grid">
+
+            <article class="card">
+                <a class="shot" href="https://github.com/BukhtawarAli110/Global-Superstore-Analysis-PowerBI" aria-label="Open the Global Superstore project on GitHub">
+                    <img src="https://raw.githubusercontent.com/BukhtawarAli110/Global-Superstore-Analysis-PowerBI/main/images/dashboard.png" alt="Global Superstore Power BI dashboard" width="1433" height="789" loading="lazy">
+                </a>
+                <div class="card-body">
+                    <h2><a href="https://github.com/BukhtawarAli110/Global-Superstore-Analysis-PowerBI">Global Superstore Profitability Analysis</a></h2>
+                    <p class="meta">Power BI &middot; 2026</p>
+                    <ul class="tags"><li>DAX</li><li>Star Schema</li><li>Data Modelling</li><li>Executive Dashboards</li></ul>
+                    <ul class="points">
+                        <li>Three-page executive report (Overview, Customers, Supply Chain) analysing 12.64M in sales across 25,035 orders and 13 regions, built on a star schema with a Key Measures table</li>
+                        <li>Defined net profit as profit after shipping cost, with YoY growth, return rate, repeat-customer rate and freight-drag measures</li>
+                        <li>Found that shipping costs 10.7% of sales and cuts the profit margin from 11.6% to 0.91%</li>
+                        <li>Showed that Furniture and three regions lose money after freight, and that 44% of customer accounts are unprofitable</li>
+                    </ul>
+                    <a class="cta" href="https://github.com/BukhtawarAli110/Global-Superstore-Analysis-PowerBI">View the project on GitHub &rarr;</a>
+                </div>
+            </article>
+
+            <article class="card">
+                <a class="shot" href="https://github.com/BukhtawarAli110/Med-Sales-Analysis-PowerBI" aria-label="Open the Med Sales project on GitHub">
+                    <img src="https://raw.githubusercontent.com/BukhtawarAli110/Med-Sales-Analysis-PowerBI/main/images/dashboard.png" alt="Med Sales Power BI dashboard" width="1424" height="800" loading="lazy">
+                </a>
+                <div class="card-body">
+                    <h2><a href="https://github.com/BukhtawarAli110/Med-Sales-Analysis-PowerBI">Pharma Sales, Returns and Target Analysis</a></h2>
+                    <p class="meta">Power BI &middot; 2026</p>
+                    <ul class="tags"><li>DAX</li><li>Star Schema</li><li>Pareto Analysis</li><li>Time Intelligence</li></ul>
+                    <ul class="points">
+                        <li>Four-page report analysing 2.72bn in sales revenue across 1.2M transactions, 54 distributors, 19 states and 11 brands</li>
+                        <li>Dynamic Pareto chart with a dimension selector (Brand, Product Group, State, Plant) and an adjustable threshold slider</li>
+                        <li>YTD, MTD and FTD target-vs-achievement measures (Jan to Oct 2022 sales reached 93% of target), plus a switch between quantity and rupee views of sales and returns</li>
+                        <li>Found that five brands drive 67% of revenue, five states drive 48%, and returns stay low at 3.5% of sales</li>
+                    </ul>
+                    <a class="cta" href="https://github.com/BukhtawarAli110/Med-Sales-Analysis-PowerBI">View the project on GitHub &rarr;</a>
+                </div>
+            </article>
+
+            <article class="card">
+                <a class="shot" href="https://github.com/BukhtawarAli110/RLS-Scenario-Dashboard-PowerBI" aria-label="Open the RLS dashboard project on GitHub">
+                    <img src="https://raw.githubusercontent.com/BukhtawarAli110/RLS-Scenario-Dashboard-PowerBI/main/images/dashboard.png" alt="RLS scenario Power BI dashboard" width="1423" height="791" loading="lazy">
+                </a>
+                <div class="card-body">
+                    <h2><a href="https://github.com/BukhtawarAli110/RLS-Scenario-Dashboard-PowerBI">Row-Level Security and What-If Scenario Dashboard</a></h2>
+                    <p class="meta">Power BI &middot; 2026</p>
+                    <ul class="tags"><li>DAX</li><li>Row-Level Security</li><li>What-If Parameters</li><li>Field Parameters</li></ul>
+                    <ul class="points">
+                        <li>One dashboard that shows different data to an Executive, a Regional Manager and Sales Staff, using a dynamic row-level security role (USERPRINCIPALNAME) on a user-to-region table, plus a DAX-driven governance banner, lock icon and dynamic titles</li>
+                        <li>Masked margin for Level 1 users (restricted table, KPI cards and chart series), while managers and executives see the full figures for their regions</li>
+                        <li>Built a discount what-if slider and a metric field parameter that recalculate scenario revenue and margin for each user</li>
+                        <li>Showed that a 10% discount cuts margin pounds by 15% (65.9% to 62.1% margin), because the whole discount falls on profit</li>
+                    </ul>
+                    <a class="cta" href="https://github.com/BukhtawarAli110/RLS-Scenario-Dashboard-PowerBI">View the project on GitHub &rarr;</a>
+                </div>
+            </article>
+
+            <article class="card">
+                <a class="shot" href="https://github.com/BukhtawarAli110/Blinkit-Sales-Analysis-PowerBI" aria-label="Open the Blinkit project on GitHub">
+                    <img src="https://raw.githubusercontent.com/BukhtawarAli110/Blinkit-Sales-Analysis-PowerBI/main/images/dashboard.png" alt="Blinkit Power BI dashboard" width="1403" height="805" loading="lazy">
+                </a>
+                <div class="card-body">
+                    <h2><a href="https://github.com/BukhtawarAli110/Blinkit-Sales-Analysis-PowerBI">Blinkit Grocery Sales Analysis</a></h2>
+                    <p class="meta">Power BI &middot; 2026</p>
+                    <ul class="tags"><li>DAX</li><li>Power Query</li><li>Field Parameters</li></ul>
+                    <ul class="points">
+                        <li>Interactive dashboard analysing 1.20M in sales across 8,523 items, 10 outlets and 16 product categories</li>
+                        <li>Cleaned inconsistent product labels in Power Query and built a Key Measures table of DAX measures</li>
+                        <li>Field-parameter metric switcher lets every chart flip between Total Sales, Average Sales, Item Count and Rating</li>
+                        <li>Found that Tier 3 locations lead revenue (39%) and Supermarket Type 1 outlets drive 65% of sales through volume, not basket value</li>
+                    </ul>
+                    <a class="cta" href="https://github.com/BukhtawarAli110/Blinkit-Sales-Analysis-PowerBI">View the project on GitHub &rarr;</a>
+                </div>
+            </article>
+
+            <article class="card">
+                <a class="shot" href="https://github.com/BukhtawarAli110/HR-Attrition-Analysis-PowerBI" aria-label="Open the HR Attrition project on GitHub">
+                    <img src="https://raw.githubusercontent.com/BukhtawarAli110/HR-Attrition-Analysis-PowerBI/main/images/dashboard.png" alt="HR Attrition Power BI dashboard" width="1424" height="790" loading="lazy">
+                </a>
+                <div class="card-body">
+                    <h2><a href="https://github.com/BukhtawarAli110/HR-Attrition-Analysis-PowerBI">HR Attrition Analysis</a></h2>
+                    <p class="meta">Power BI &middot; 2026</p>
+                    <ul class="tags"><li>DAX</li><li>Power Query</li><li>Conditional Formatting</li></ul>
+                    <ul class="points">
+                        <li>Interactive dashboard analysing attrition for 1,470 employees, with KPI cards, age and gender breakdowns and a job-role satisfaction heat map</li>
+                        <li>Education-field buttons filter every visual on the page with one click</li>
+                        <li>Found a 16.1% overall attrition rate, with overtime workers leaving at 30.5% against 10.4% for the rest</li>
+                        <li>Sales Representatives (39.8%) and under-25s (39.2%) are the highest-risk groups</li>
+                    </ul>
+                    <a class="cta" href="https://github.com/BukhtawarAli110/HR-Attrition-Analysis-PowerBI">View the project on GitHub &rarr;</a>
+                </div>
+            </article>
+
+            <article class="card">
+                <a class="shot" href="https://github.com/BukhtawarAli110/Netflix-Content-Analysis-PowerBI" aria-label="Open the Netflix project on GitHub">
+                    <img src="https://raw.githubusercontent.com/BukhtawarAli110/Netflix-Content-Analysis-PowerBI/main/images/dashboard.png" alt="Netflix Power BI dashboard" width="1427" height="790" loading="lazy">
+                </a>
+                <div class="card-body">
+                    <h2><a href="https://github.com/BukhtawarAli110/Netflix-Content-Analysis-PowerBI">Netflix Content Analysis</a></h2>
+                    <p class="meta">Power BI &middot; 2026</p>
+                    <ul class="tags"><li>DAX</li><li>Power Query</li><li>Data Modelling</li></ul>
+                    <ul class="points">
+                        <li>Three-page report analysing 5,806 Netflix titles and 77,000 cast and crew credits, with slicers for release year, type, country, genre and rating</li>
+                        <li>Built KPI cards, a release-year trend with trend line, genre and maturity-rating breakdowns, and top directors and cast from the credits table</li>
+                        <li>Found that movies make up 65% of the catalogue, the US supplies 40% of titles (India is second), Drama and Comedy lead the genre mix, and a quarter of titles are mature content</li>
+                        <li>Flagged that 45% of titles have no age certification, the biggest data-quality gap in the dataset</li>
+                    </ul>
+                    <a class="cta" href="https://github.com/BukhtawarAli110/Netflix-Content-Analysis-PowerBI">View the project on GitHub &rarr;</a>
+                </div>
+            </article>
+
+        </div>
+    </main>
+
+    <div class="bottom-nav">
+        <a href="index.html">&larr; Back to main page</a>
+        <a href="https://github.com/BukhtawarAli110">All repositories on GitHub &rarr;</a>
+    </div>
+
+    <footer>
+        <ul>
+            <li>Bukhtawar Ali - Data Analyst/Engineer - contactbukhtawar.ali@gmail.com - London, UK</li>
+            <li>Website developed by MistyPigeon - mistypigeon@disroot.org</li>
+        </ul>
+    </footer>
+
+</body>
+</html>
