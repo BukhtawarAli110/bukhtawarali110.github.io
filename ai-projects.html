@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AI-assisted projects by Bukhtawar Ali: a Gemini prompt generator skill and JAppTracker, a job-application tracker built with AI-assisted development.">
+    <title>AI Projects | Bukhtawar Ali | Prompt Engineering and AI-assisted Development</title>
+    <style>
+
+        :root {
+            --text: #666666;
+            --heading: #444444;
+            --line: #eeeeee;
+            --accent: #2b6cb0;
+            --accent-soft: #eef4fb;
+            --card: #ffffff;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            color: var(--text);
+            line-height: 1.6;
+            max-width: 1040px;
+            margin: 40px auto;
+            padding: 0 20px;
+            background-color: #ffffff;
+        }
+
+        a { color: var(--accent); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+
+        .topbar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px 24px;
+            align-items: center;
+            justify-content: space-between;
+            padding-bottom: 14px;
+            border-bottom: 1px solid var(--line);
+            font-size: 0.95em;
+        }
+        .topbar nav { display: flex; gap: 22px; }
+        .topbar nav a { color: var(--text); text-transform: uppercase; letter-spacing: 1px; font-size: 0.85em; }
+        .topbar nav a[aria-current="page"] { color: var(--heading); font-weight: 600; border-bottom: 2px solid var(--accent); }
+        .back-link { font-weight: 600; }
+
+        header.hero { margin: 36px 0 30px; }
+        h1 { color: var(--heading); font-weight: 600; margin: 0 0 8px; font-size: 2em; }
+        .lead { max-width: 720px; margin: 0 0 18px; }
+        .stats { display: flex; flex-wrap: wrap; gap: 10px; padding: 0; margin: 0; list-style: none; }
+        .stats li {
+            margin: 0;
+            padding: 6px 14px;
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            background: #fafafa;
+            font-size: 0.9em;
+        }
+        .stats strong { color: var(--heading); }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 460px), 1fr));
+            gap: 28px;
+            margin-top: 10px;
+        }
+
+        .card {
+            display: flex;
+            flex-direction: column;
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            transition: box-shadow 0.2s ease, transform 0.2s ease;
+        }
+        .card:hover { box-shadow: 0 8px 22px rgba(0, 0, 0, 0.10); transform: translateY(-3px); }
+
+        .shot { display: block; background: #f4f4f4; border-bottom: 1px solid var(--line); }
+        .shot img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; object-position: top left; }
+
+        .card-body { display: flex; flex-direction: column; flex: 1; padding: 20px 22px 22px; }
+        .card h2 { margin: 0 0 4px; font-size: 1.2em; line-height: 1.3; color: var(--heading); font-weight: 600; }
+        .card h2 a { color: inherit; }
+        .meta { margin: 0 0 12px; font-size: 0.85em; color: #999999; }
+
+        .tags { display: flex; flex-wrap: wrap; gap: 6px; padding: 0; margin: 0 0 14px; list-style: none; }
+        .tags li {
+            margin: 0;
+            padding: 2px 10px;
+            border-radius: 999px;
+            background: var(--accent-soft);
+            color: var(--accent);
+            font-size: 0.78em;
+            font-weight: 600;
+        }
+
+        .card ul.points { margin: 0 0 18px; padding-left: 18px; font-size: 0.93em; }
+        .card ul.points li { margin-bottom: 7px; }
+
+        .cta {
+            margin-top: auto;
+            align-self: flex-start;
+            display: inline-block;
+            padding: 8px 16px;
+            border: 1px solid var(--accent);
+            border-radius: 6px;
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 0.92em;
+            transition: background 0.15s ease, color 0.15s ease;
+        }
+        .cta:hover { background: var(--accent); color: #ffffff; text-decoration: none; }
+
+        .bottom-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px 24px;
+            justify-content: space-between;
+            margin-top: 44px;
+            padding-top: 18px;
+            border-top: 1px solid var(--line);
+        }
+
+        footer { margin-top: 30px; font-size: 0.9em; }
+        footer ul { list-style: none; padding: 0; margin: 0; }
+        footer li { margin-bottom: 6px; }
+
+        @media (max-width: 520px) {
+            body { margin: 24px auto; }
+            .card-body { padding: 16px; }
+            .topbar nav { gap: 16px; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .card, .cta { transition: none; }
+            .card:hover { transform: none; }
+        }
+    </style>
+    <meta property="og:title" content="AI Projects | Bukhtawar Ali">
+    <meta property="og:description" content="A Gemini prompt generator skill and an AI-assisted job-application tracker.">
+    <meta property="og:type" content="website">
+    <link rel="stylesheet" href="theme.css">
+</head>
+<body class="wide">
+
+    <div class="topbar">
+        <a class="back-link" href="index.html">&larr; Back to main page</a>
+        <nav aria-label="Site">
+            <a href="index.html">Home</a>
+            <a href="projects.html">Projects</a>
+            <a href="ai-projects.html" aria-current="page">AI Projects</a>
+            <a href="aboutme.html">About Me</a>
+        </nav>
+    </div>
+
+    <header class="hero">
+        <h1>AI Projects</h1>
+        <p class="lead">Tools I built with AI assistants, and the prompt work behind them. Each project is public on GitHub with a README and the source.</p>
+        <ul class="stats" aria-label="Summary">
+            <li><strong>2</strong> public projects</li>
+            <li><strong>Gemini</strong> prompt skills</li>
+            <li><strong>MIT</strong> licensed</li>
+        </ul>
+    </header>
+
+    <main>
+        <div class="grid">
+
+            <article class="card">
+                <div class="card-body">
+                    <h2><a href="https://github.com/BukhtawarAli110/Gemini-Prompt-Generator-Skill">Gemini Prompt Generator Skill</a></h2>
+                    <p class="meta">AI-assisted &middot; 2026</p>
+                    <ul class="tags"><li>Prompt Engineering</li><li>Context Engineering</li><li>Gemini</li></ul>
+                    <ul class="points">
+                        <li>A custom Gemini skill that turns a short request into expert-quality work, or into a reusable master prompt</li>
+                        <li>Builds every prompt from a Six-Point Formula: role, task, context, process, constraints and output format</li>
+                        <li>A question gate stops it from guessing: it asks for missing facts such as dates, budget or experience before it answers</li>
+                        <li>Type /prompt for a copy-ready master prompt; the repo includes a worked flight-finder example</li>
+                    </ul>
+                    <a class="cta" href="https://github.com/BukhtawarAli110/Gemini-Prompt-Generator-Skill">View the project on GitHub &rarr;</a>
+                </div>
+            </article>
+
+            <article class="card">
+                <div class="card-body">
+                    <h2><a href="https://github.com/BukhtawarAli110/JAppTracker">JAppTracker</a></h2>
+                    <p class="meta">AI-assisted &middot; 2026</p>
+                    <ul class="tags"><li>Python</li><li>Azure MySQL</li><li>Email automation</li></ul>
+                    <ul class="points">
+                        <li>A web app for managing my job applications, with create, read, update and delete on a JobsData table in Azure MySQL</li>
+                        <li>Sends daily email reminders for day 3, 5 and 7 follow-ups on applications still waiting for a reply</li>
+                        <li>Built with AI-assisted development, with setup steps for Windows, Linux and macOS in the README</li>
+                    </ul>
+                    <a class="cta" href="https://github.com/BukhtawarAli110/JAppTracker">View the project on GitHub &rarr;</a>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <div class="bottom-nav">
+        <a href="projects.html">&larr; Power BI projects</a>
+        <a href="index.html">Back to main page</a>
+        <a href="https://github.com/BukhtawarAli110">All repositories on GitHub &rarr;</a>
+    </div>
+
+    <footer>
+        <ul>
+            <li>Bukhtawar Ali - Data Analyst/Engineer - contactbukhtawar.ali@gmail.com - London, UK</li>
+            <li>Website developed by MistyPigeon - mistypigeon@disroot.org</li>
+        </ul>
+    </footer>
+
+</body>
+</html>
