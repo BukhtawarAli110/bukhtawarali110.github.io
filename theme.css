@@ -1,0 +1,55 @@
+/* Shared theme: loaded after each page's own styles, so it wins. */
+:root {
+    --font: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --text: #374151;
+    --heading: #111827;
+    --line: #e5e7eb;
+    --accent: #2b6cb0;
+    --accent-soft: #eef4fb;
+    --card: #ffffff;
+    --page: #ffffff;
+    --panel: #fafcfe;
+    --muted: #6b7280;
+}
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+    font-family: var(--font);
+    font-size: 17px;
+    line-height: 1.65;
+    color: var(--text);
+    background-color: var(--page);
+    max-width: 860px;
+}
+body.wide { max-width: 1040px; }
+
+h1, h2, h3 { color: var(--heading); font-weight: 650; line-height: 1.25; }
+.section-title, .topnav, .topbar, .bottom-nav { border-color: var(--line); }
+.topnav a, .topbar nav a { color: var(--muted); }
+.topnav a[aria-current="page"], .topbar nav a[aria-current="page"] { color: var(--heading); }
+.projects-cta { background: var(--panel); border-color: var(--line); }
+.projects-cta strong, .stats strong { color: var(--heading); }
+.stats li { background: var(--panel); border-color: var(--line); }
+.meta { color: var(--muted); }
+img { border-color: var(--line); }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --text: #cbd5e1;
+        --heading: #f1f5f9;
+        --line: #273449;
+        --accent: #63a4e6;
+        --accent-soft: #1b2a41;
+        --card: #162032;
+        --page: #0f172a;
+        --panel: #162032;
+        --muted: #94a3b8;
+    }
+    .button { color: #0f172a; background: var(--accent); border-color: var(--accent); }
+    .button:hover { background: #8dbcee; }
+    .shot { background: #0b1220; }
+    .cta:hover { color: #0f172a; }
+    .card { box-shadow: none; }
+}
